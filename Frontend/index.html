@@ -1,0 +1,512 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BlindSpot | Discover What You're Missing</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo" onclick="window.location.href='index.html'">
+        BlindSpot<span>.</span>
+    </div>
+
+    <div class="nav-links">
+        <a href="#how-it-works">How it works</a>
+        <a href="#about">About</a>
+    </div>
+
+    <div class="nav-actions">
+
+        <button class="nav-btn" onclick="scrollToAnalyzer()">
+            Try it now →
+        </button>
+
+        <!-- Logged-out user -->
+
+        <div id="guest-nav" class="guest-nav">
+            <a href="auth.html" class="login-nav-btn">
+                Login / Register
+            </a>
+        </div>
+
+        <!-- Logged-in user -->
+
+        <div id="user-nav" class="user-nav hidden">
+
+            <button
+                id="profile-menu-btn"
+                class="profile-menu-btn"
+                type="button"
+            >
+
+                <img
+                    id="nav-avatar"
+                    src="https://ui-avatars.com/api/?name=User&background=5141a8&color=fff"
+                    alt="Profile picture"
+                >
+
+                <span id="nav-username">User</span>
+
+                <span class="dropdown-arrow">⌄</span>
+
+            </button>
+
+            <div id="profile-dropdown" class="profile-dropdown hidden">
+
+                <div class="dropdown-user-info">
+
+                    <strong id="dropdown-name">User</strong>
+
+                    <span id="dropdown-email">user@example.com</span>
+
+                </div>
+
+                <div class="dropdown-divider"></div>
+
+                <a href="profile.html">My Profile</a>
+
+                <a href="profile.html#decisions">My Decisions</a>
+
+                <button id="logout-btn" type="button">
+                    Logout
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+    <!-- HERO SECTION -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-tag">
+                <span class="live-dot"></span>
+                THINK BEYOND THE OBVIOUS
+            </div>
+
+            <h1>
+                What are you<br>
+                <span>not thinking about?</span>
+            </h1>
+
+            <p class="hero-description">
+                Every decision has hidden factors.
+                Discover what you might be overlooking
+                before making your next big move.
+            </p>
+
+            <button class="hero-btn" onclick="scrollToAnalyzer()">
+                Discover your blind spots
+                <span>↗</span>
+            </button>
+
+            <div class="hero-note">
+                No right or wrong answers. Just better awareness.
+            </div>
+
+        </div>
+
+
+        <!-- DECORATIVE GRAPH -->
+
+        <div class="hero-visual">
+
+            <div class="visual-circle circle-one"></div>
+            <div class="visual-circle circle-two"></div>
+
+            <div class="node node-center">
+                YOUR<br>DECISION
+            </div>
+
+            <div class="node node-one">Money</div>
+            <div class="node node-two">Time</div>
+            <div class="node node-three">Risk</div>
+            <div class="node node-four">Future</div>
+
+            <div class="node node-hidden">
+                ?
+            </div>
+
+            <div class="visual-label">
+                THERE'S ALWAYS MORE TO CONSIDER
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ANALYZER SECTION -->
+
+    <section class="analyzer-section" id="analyzer">
+
+        <div class="section-heading">
+
+            <div class="small-label">START EXPLORING</div>
+
+            <h2>
+                Let's examine your <span>decision.</span>
+            </h2>
+
+            <p>
+                Tell us what's on your mind.
+                We'll help you discover the factors you may have missed.
+            </p>
+
+        </div>
+
+
+        <div class="analyzer-card">
+
+            <label for="decision">
+                What decision are you trying to make?
+            </label>
+
+            <textarea
+                id="decision"
+                placeholder="Example: Should I move to another city for a new job?"
+                rows="4"
+            ></textarea>
+
+
+            <div class="input-footer">
+
+                <span>Describe your decision in your own words.</span>
+
+                <span id="char-count">0 / 500</span>
+
+            </div>
+
+
+            <button
+                class="analyze-btn"
+                id="analyze-btn"
+                onclick="startAnalysis()"
+            >
+
+                <span>Discover My Blind Spots</span>
+                <span>→</span>
+
+            </button>
+
+
+            <div class="privacy-note">
+                Your decision deserves a second perspective.
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- LOADING SECTION -->
+
+    <section class="loading-section hidden" id="loading">
+
+        <div class="loader"></div>
+
+        <h2>Exploring your decision...</h2>
+
+        <p id="loading-text">
+            Identifying connected factors.
+        </p>
+
+    </section>
+
+
+    <!-- RESULTS SECTION -->
+
+    <section class="results-section hidden" id="results">
+
+        <div class="results-header">
+
+            <div>
+                <div class="small-label">YOUR ANALYSIS</div>
+
+                <h2>Here's what you might be <span>missing.</span></h2>
+
+                <p id="result-decision"></p>
+            </div>
+
+            <button class="reset-btn" onclick="resetAnalysis()">
+                New decision ↗
+            </button>
+
+        </div>
+
+
+        <!-- SUMMARY -->
+
+        <div class="summary-grid">
+
+            <div class="summary-card">
+                <span class="summary-label">Factors discovered</span>
+                <h3 id="total-factors">0</h3>
+            </div>
+
+            <div class="summary-card">
+                <span class="summary-label">Potential blind spots</span>
+                <h3 id="missing-factors">0</h3>
+            </div>
+
+            <div class="summary-card">
+                <span class="summary-label">Coverage score</span>
+                <h3 id="coverage-score">0%</h3>
+            </div>
+
+        </div>
+
+
+        <!-- PERSPECTIVES -->
+
+        <div class="perspective-section">
+
+            <h3>Explore different perspectives</h3>
+
+            <div class="perspective-buttons">
+
+                <button class="perspective-btn active" data-perspective="all">
+                    All
+                </button>
+
+                <button class="perspective-btn" data-perspective="financial">
+                    Financial
+                </button>
+
+                <button class="perspective-btn" data-perspective="practical">
+                    Practical
+                </button>
+
+                <button class="perspective-btn" data-perspective="risk">
+                    Risk
+                </button>
+
+                <button class="perspective-btn" data-perspective="future">
+                    Long-term
+                </button>
+
+                <button class="perspective-btn" data-perspective="personal">
+                    Personal
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- DISCOVERED FACTORS -->
+
+        <div class="factors-section">
+
+            <div class="factors-heading">
+
+                <div>
+                    <h3>Discovered considerations</h3>
+                    <p>Factors you may want to examine.</p>
+                </div>
+
+                <span class="result-count" id="factor-count">
+                    0 factors
+                </span>
+
+            </div>
+
+            <div class="factor-list" id="factor-list">
+
+                <!-- JavaScript generates factor cards here -->
+
+            </div>
+
+        </div>
+
+
+        <!-- GRAPH VISUALIZATION -->
+
+        <div class="graph-section">
+
+            <div class="factors-heading">
+
+                <div>
+                    <h3>Your BlindSpot Map</h3>
+                    <p>Explore how different considerations connect.</p>
+                </div>
+
+            </div>
+
+            <div class="graph-container" id="graph-container">
+
+                <div class="graph-placeholder">
+                    Your decision network will appear here.
+                </div>
+
+            </div>
+
+            <p class="graph-hint">
+                Click on a factor to explore its connected considerations.
+            </p>
+
+        </div>
+
+
+        <!-- SECOND LEVEL DISCOVERY -->
+
+        <div class="deep-discovery">
+
+            <div>
+                <div class="small-label">GO ONE LEVEL DEEPER</div>
+
+                <h3>Explore beyond the obvious.</h3>
+
+                <p>
+                    Discover additional factors connected
+                    to your overlooked considerations.
+                </p>
+            </div>
+
+            <button id="deep-discover-btn" onclick="discoverDeeper()">
+                Explore deeper →
+            </button>
+
+        </div>
+
+
+        <!-- CUSTOM FACTOR -->
+
+        <div class="custom-factor">
+
+            <h3>Did we miss something?</h3>
+
+            <p>Add your own consideration to the analysis.</p>
+
+            <div class="custom-input">
+
+                <input
+                    type="text"
+                    id="custom-factor-input"
+                    placeholder="Enter another factor..."
+                >
+
+                <button onclick="addCustomFactor()">
+                    Add +
+                </button>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- HOW IT WORKS -->
+
+    <section class="how-section" id="how-it-works">
+
+        <div class="section-heading">
+
+            <div class="small-label">THE PROCESS</div>
+
+            <h2>Think beyond your <span>first thought.</span></h2>
+
+        </div>
+
+
+        <div class="steps-grid">
+
+            <div class="step-card">
+                <div class="step-number">01</div>
+                <h3>Describe</h3>
+                <p>Enter any decision in your own words.</p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">02</div>
+                <h3>Discover</h3>
+                <p>Explore related factors and hidden considerations.</p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">03</div>
+                <h3>Connect</h3>
+                <p>Explore relationships between different factors.</p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">04</div>
+                <h3>Reflect</h3>
+                <p>Make a more informed decision with a wider perspective.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section class="about-section" id="about">
+
+        <div class="about-content">
+
+            <div class="small-label">OUR PHILOSOPHY</div>
+
+            <h2>
+                Better decisions don't come from
+                knowing everything.
+                <span>They come from knowing what you might be missing.</span>
+            </h2>
+
+            <p>
+                BlindSpot is designed to expand your perspective,
+                reveal overlooked considerations and help you
+                think more completely.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="logo">
+            BlindSpot<span>.</span>
+        </div>
+
+        <p>Think beyond what you know.</p>
+
+        <span>© 2026 BlindSpot. All rights reserved.</span>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+<script src="profile.js"></script>
+</body>
+
+</html>

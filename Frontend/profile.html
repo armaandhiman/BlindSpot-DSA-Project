@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | BlindSpot</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='index.html'">
+            BlindSpot<span>.</span>
+        </div>
+
+        <div class="profile-nav-links">
+            <a href="index.html">Home</a>
+            <button id="profile-logout" type="button">Logout</button>
+        </div>
+    </nav>
+
+    <main class="profile-container">
+
+        <section class="profile-heading">
+            <p class="profile-tag">YOUR ACCOUNT</p>
+            <h1>My Profile</h1>
+            <p>Manage your account and track your decision journey.</p>
+        </section>
+
+        <section class="profile-card">
+
+            <div class="profile-avatar" id="profile-avatar">U</div>
+
+            <div class="profile-user-details">
+                <h2 id="profile-name">Loading...</h2>
+                <p id="profile-email">Loading...</p>
+                <span class="member-badge">BlindSpot Member</span>
+            </div>
+
+        </section>
+
+
+<section class="profile-stats">
+    <h2>My Statistics</h2>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <div class="stat-icon">🧠</div>
+            <h3 id="total-decisions">0</h3>
+            <p>Decisions Analysed</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">🔗</div>
+            <h3 id="total-factors">0</h3>
+            <p>Factors Discovered</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">📅</div>
+            <h3 id="member-days">0</h3>
+            <p>Days as Member</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">📊</div>
+            <h3 id="explored-factors">0</h3>
+            <p>Factors Explored</p>
+        </div>
+
+    </div>
+</section>
+
+
+        <section class="profile-info-section">
+            <h2>Account Information</h2>
+
+            <div class="profile-info-grid">
+
+                <div class="profile-info-item">
+                    <span>Full Name</span>
+                    <strong id="info-name">Loading...</strong>
+                </div>
+
+                <div class="profile-info-item">
+                    <span>Email Address</span>
+                    <strong id="info-email">Loading...</strong>
+                </div>
+
+                <div class="profile-info-item">
+                    <span>Account Created</span>
+                    <strong id="info-created">Loading...</strong>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="profile-info-section" id="decisions">
+            <h2>My Decisions</h2>
+            <p class="decisions-description">
+                Your analyzed decisions will appear here.
+            </p>
+
+            <div id="decisions-list" class="decisions-list">
+                <div class="empty-decisions">
+                    <h3>No decisions yet</h3>
+                    <p>Start analyzing your decisions with BlindSpot.</p>
+                    <a href="index.html">Explore BlindSpot →</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="profile-page.js"></script>
+</body>
+</html>
